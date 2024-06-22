@@ -18,10 +18,14 @@ async def get_qr(link_qr, user_id): # Генерируем QR код в дире
     qr_path = f'{qr_path_imp}qr_user_{user_id}.png'
     img.save(qr_path)
     return qr_path
+    
 async def remove_qr(qr_path): # удаляет сгенерированный QR с сервера (пока что незачем его хранить)
     os.remove(os.path.join(qr_path))
 
-@router.message(F.text)
+
+# После этого комментария пишу хэндлеры. Все, что до - фукнции, кроме /start
+
+@router.message()
 async def text_entitles(message: Message):
     entitles = message.entities
     match entitles:
