@@ -22,6 +22,11 @@ async def get_qr(link_qr, user_id): # Генерируем QR код в дире
 async def remove_qr(qr_path): # удаляет сгенерированный QR с сервера (пока что незачем его хранить)
     os.remove(os.path.join(qr_path))
 
+async def start_mess(message):
+    print(message)
+    await message.answer(f'Привет, {message.from_user.first_name}, \nТвое сообщение - {message.text}')
+
+start = ['Привет', 'Здарова', 'привет', 'здарова']
 
 # После этого комментария пишу хэндлеры. Все, что до - фукнции, кроме /start
 
@@ -30,7 +35,12 @@ async def text_entitles(message: Message):
     entitles = message.entities
     match entitles:
         case None:
-            print('NoneType')
+            count = 0
+            for i in start:
+                if i in message.text and count == 0:
+                    count += 1
+                    await start_mess(message)
+                    break
         case _:
             for item in entitles:
                 if item.type == 'url':
