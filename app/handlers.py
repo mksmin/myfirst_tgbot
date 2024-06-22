@@ -23,7 +23,6 @@ async def remove_qr(qr_path): # удаляет сгенерированный QR
     os.remove(os.path.join(qr_path))
 
 async def start_mess(message):
-    print(message)
     await message.answer(f'Привет, {message.from_user.first_name}, \nТвое сообщение - {message.text}')
 
 start = ['Привет', 'Здарова', 'привет', 'здарова']
