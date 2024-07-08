@@ -25,9 +25,13 @@ async def remove_qr(qr_path): # удаляет сгенерированный QR
 async def start_mess(message):
     await message.answer(f'Привет, {message.from_user.first_name}, \nТвое сообщение - {message.text}')
 
+
+@router.message(Command('rick')):
+async def rick(message: Message):
+    await message.answer(f'https://www.youtube.com/watch?v=HIcSWuKMwOw')
+
 start = ['Привет', 'Здарова', 'привет', 'здарова']
 
-# После этого комментария пишу хэндлеры. Все, что до - фукнции, кроме /start
 
 @router.message()
 async def text_entitles(message: Message):
