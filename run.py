@@ -12,13 +12,13 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-# Объект бота
-TOKEN = os.getenv('TOKEN') # выгружаем из .env токен
-bot = Bot(token=TOKEN)
-dp = Dispatcher()
 
 # Запуск процесса поллинга новых апдейтов
 async def main():
+    # Объект бота
+    TOKEN = os.getenv('TOKEN')  # выгружаем из .env токен
+    bot = Bot(token=TOKEN)
+    dp = Dispatcher()
     dp.include_router(router) # Теперь диспетчер знает, в каком файле находится роутер обработчик хэндлеров
     await dp.start_polling(bot)
 
